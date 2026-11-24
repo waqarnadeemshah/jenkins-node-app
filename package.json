@@ -1,0 +1,10 @@
+{
+  "name": "jenkins",
+  "version": "1.0.0",
+  "description": "My first Jenkins CI project",
+  "main": "app.js",
+  "scripts": {
+    "test": "node test.js",
+    "start": "node app.js"
+  }
+}
