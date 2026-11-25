@@ -1,7 +1,9 @@
+
 pipeline {
     agent any
 
     stages {
+
         stage('Checkout') {
             steps {
                 echo 'Getting code from GitHub'
@@ -9,20 +11,23 @@ pipeline {
             }
         }
 
-        stage('Install') {
+        stage('Install Dependencies') {
             steps {
+                echo 'Installing Node.js dependencies'
                 bat 'npm install'
             }
         }
 
-        stage('Test') {
+        stage('Run Tests') {
             steps {
+                echo 'Executing application tests'
                 bat 'npm test'
             }
         }
 
         stage('Build') {
             steps {
+                echo 'Build process started'
                 bat 'echo Build completed successfully'
             }
         }
@@ -30,10 +35,11 @@ pipeline {
 
     post {
         success {
-            echo 'CI Pipeline Successful!'
+            echo 'Congratulations! Pipeline completed successfully.'
         }
+
         failure {
-            echo 'CI Pipeline Failed!'
+            echo 'Pipeline failed. Please check the error.'
         }
     }
 }
