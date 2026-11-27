@@ -49,6 +49,15 @@ pipeline {
                 bat 'echo Build completed successfully'
             }
         }
+        stage("package-Application"){
+            steps{
+                echo "creating package application"
+                bat 'if not exist dist mkdir dist'
+                bat 'copy package.json dist\\package.json'
+                bat 'copy app.js dist\\app.js'
+                archiveArtifacts artifacts:'dist/**',fingerprint:true    
+            } 
+        }
         stage('production deploy demo'){
             when{
                 expression{
